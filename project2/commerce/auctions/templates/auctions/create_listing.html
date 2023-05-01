@@ -1,0 +1,49 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %} Create listing {% endblock %}
+
+{% block body %}
+{% if message %}
+    <div class="alert alert-warning" role="alert">
+        {{ message }}
+    </div>
+{% endif %}
+<form action="{% url 'create_listing' %}" method="POST" >
+    {% csrf_token %}
+<div class="mb-3" style="margin-left:300px;">
+    <input style="width: 600px; height:40px;" type="text" class="form-control" name="title" placeholder="Title" autofocus>
+  </div>
+  <div class="mb-3" style="margin-left:300px;">
+    <label for="TextareaLabel" class="form-label">Listing Description 👇👇👇</label>
+    <textarea style="width: 600px; min-height:200px;"class="form-control" id="TextareaLabel" rows="3" name="description" ></textarea>
+  </div>
+  <div class="mb-3" style="margin-left:300px;">
+    <input style="width: 600px; height:40px;" type="text" class="form-control" name="img_url" placeholder="Image URL">
+  </div>
+  <div class="mb-3" style="margin-left:300px;">
+    <select style="width: 600px; height:40px;" name="category" class="form-control">
+        <option value="Nothing" selected >Select Category</option>
+        <option value="Cars">🚗 Cars</option>
+        <option value="Properties">🏡 Properties</option>
+        <option value="Mobiles">📱 Mobiles</option>
+        <option value="Bikes">🛵 Bikes</option>
+        <option value="Electronics & Appliances">📺 Electronics & Appliances</option>
+        <option value="Commercial Vehicles & Spares">🚚 Commercial Vehicles & Spares</option>
+        <option value="Furniture">🪑 Furniture</option>
+        <option value="Fashion">👨‍👩‍👧‍👧 Fashion</option>
+        <option value="Books & Sports">📚 Books & Sports</option>
+        <option value="Pets">🐶 Pets</option>
+        <option value="Others">🙃 Others</option>
+      </select>
+  </div>
+  <div class="mb-3" style="margin-left:300px;">
+    <input style="width: 600px; height:40px;" type="number" class="form-control" name="price" placeholder="Price in INR ">
+  </div>
+  <div class="mb-3" style="margin-left:800px;">
+    <input class="btn btn-success" type="submit" value="post listing">
+  </div>
+</form>
+<div class="alert alert-danger" role="alert">
+    Important note: please ensure that the selected image height doesn't exceed 500px and width doesn't exceed 1500px for a better experience.
+  </div>
+{% endblock %}

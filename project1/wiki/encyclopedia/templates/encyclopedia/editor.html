@@ -1,0 +1,38 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}    Editor  {% endblock %}
+
+{% block styling %}
+<style>
+    #a{
+        width: 200px;
+    }
+    #b{
+        width: 800px;
+        height: 500px;
+    }
+    #c{
+        width: 130px;
+        height: 36px;
+        border-radius:4px;
+        background-color: whitesmoke;
+        border: 1px solid lightgray;
+        color:#222;
+    }    
+</style>
+{% endblock %}
+
+{% block body %}
+    <form action="{% url 'editor' %}" method="POST" >
+        {%  csrf_token %}
+        <div> <input id="a" type="text" name="title" placeholder="Entry title come's here" value=""> </div>
+        <p></p>
+        <p> Down below is the <span style="color: red;">textarea</span> to write entry's content 👇👇👇</p>
+        <div>
+        <textarea  id="b" name="content"></textarea>
+        </div>
+        <div> <input id="c" type="submit" value="save"> </div>
+    </form>
+    <h5>{{text1}}<span style="color: red;"> {{text2}}</span></h5>
+    <p>{{text3}}</p>
+{% endblock %}

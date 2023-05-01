@@ -1,0 +1,37 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}  Content Modification  {% endblock %}
+
+{% block styling %}
+<style>
+    #a{
+        width: 200px;
+    }
+    #b{
+        width: 800px;
+        height: 500px;
+    }
+    #c{
+        width: 130px;
+        height: 36px;
+        border-radius:4px;
+        background-color: whitesmoke;
+        border: 1px solid lightgray;
+        color:#222;
+    }    
+</style>
+{% endblock %}
+
+{% block body %}
+    <form action="{% url 'mod' title %}" method="POST" >
+        {% csrf_token %}
+        <h5> Title - <u style="color:green;" > {{title}} </u> </h5>
+        <p></p>
+        <p> Down below is the <span style="color: red;">textarea</span> to write entry's content 👇👇👇</p>
+        <div>
+        <textarea  id="b" name="content">{{content}}</textarea>
+        </div>
+        <div> <input id="c" type="submit" value="save"> </div>
+    </form>
+    <h5>{{text1}}<span style="color: red;"> {{text2}}</span></h5>
+{% endblock %}

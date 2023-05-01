@@ -1,0 +1,55 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %} Watchlist {% endblock %}
+
+{% block styling %}
+    <style>
+        img{
+            width:200px;
+            height:150px;
+         }
+         .a{
+             border:2px solid #ebebeb;
+             height:175px;
+             margin-top: 15px;
+         }
+         .b{
+             float:left;
+             margin-left: 10px;
+             margin-top: 10px;
+         }
+         .c{
+             float: left;
+             margin-top: 20px;
+             margin-left: 30px;
+         }
+         .d{
+             color:black;
+         }
+         .d:hover{
+             text-decoration: none;
+             color: slategray;
+         }
+         .d:visited{
+             text-decoration: none;
+         }
+    </style>
+{% endblock %}
+
+{% block body %}
+    {% for x,y in watchlist %}
+        <div class="a">
+            <div class="b" >
+                <a href="{% url 'listing' x.id %}"><img src="{{x.img_url}}" alt="{{x.ad_title}}"></a>
+            </div>
+            <div class="c">
+                <a class="d" href="{% url 'listing' x.id %}"><h2>{{x.ad_title}}</h2></a>
+                <h6 style="margin-top: 15px;">Price: <span style="font-weight:normal;">₹{{y}}</span></h6>
+            </div>
+        </div>
+    {% empty %}
+    <div class="alert alert-primary" role="alert">
+        <p style="font-weight: bold;"   >Nothing in the list...</p>
+      </div>
+    {% endfor %}
+{% endblock %}

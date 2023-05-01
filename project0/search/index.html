@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Search !</title>
+        <style>
+            #a{
+                margin-left:80%;
+            }
+            #c,#d,#e{
+                text-align: center;
+                padding-top: 25px;
+            }
+            #b{
+                margin-top:125px;
+            }
+            a:hover{
+                color:red;
+            }
+            #tf{
+                border-radius: 20px;
+                border: 1px solid lightgray;
+                width: 575px;
+                height: 38px;
+            }
+            #tf:focus{
+                border: 0px;
+            }
+            body, input{
+                font-size: 14px;
+                font-family: arial,sans-serif;
+            }
+            .f{
+                border-radius:4px;
+                background-color: whitesmoke;
+                border: 0px;
+                color:#222;
+            }
+            .f:hover{
+                border: 1px solid lightgray;
+            }
+        </style>
+    </head>
+    <body>
+        <div id=a >
+            <a href="image_search.html"> To Image Search &gt;&gt; </a>
+            &nbsp;&nbsp;&nbsp;<a href="advanced_search.html"> To Advanced Search &gt;&gt; </a>
+        </div>
+        <div id=b >
+            <div id=c >  <img src="images/logo1.png" alt="Google logo"> </div>
+        <form action="https://www.google.com/search">
+                <div id=d style="height:44px;"> <input id="tf" type="text" name="q" size=75> </div>
+                <div id=e>
+                    <input class=f style="width: 130px; height: 36px;" type="submit" name="btnK" value="Google Search">&nbsp;&nbsp;&nbsp;
+                    <input class=f style="width: 140px; height: 36px;"type="submit" name="btnI" value="I'm Feeling Luck"> <!-- here the name attribute and it's value is key -->
+                </div>
+        </form>
+    </div>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}   search result...   {% endblock %}
+
+{% block body %}
+    <h4> {{text | safe}} <span> {{text2}} <span style="color:red;">'{{query}}'</span> </span> </h4>
+    <h5>{{text1}}</h5>
+    <ul>
+    {% for x in match %}
+        <li> <a id=a href="{% url 'wiki_entry' x %}">{{ x }}</a> </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

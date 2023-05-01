@@ -1,0 +1,113 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}   {{ad.ad_title}} {% endblock %}
+
+{% block body %}
+    <h2><u>{{ad.ad_title}}</u></h2>
+    {% if bidder == user and not ad.flag %}
+    <div class="alert alert-success" role="alert">
+        Congrats, you won this Auction 🤝
+      </div>
+    {% endif %}
+    <div>
+        <form action="{% url 'list' ad.id %}" method="POST">
+            {% csrf_token %}
+            {% if ad in watch %}
+                <input class="btn btn-dark" type="submit" name="watch" value="unwatch">
+            {% else %}
+                <input class="btn btn-warning" type="submit" name="watch" value="watchlist">
+            {% endif %}
+        </form>
+    </div>
+    <div style="margin-top: 5px;">
+        <img src="{{ad.img_url}}" alt="{{ad.title}}">
+    </div>
+    <div>
+        <div>
+            <h2> ₹{{max_bid}}</h2>
+        </div>
+        <div>
+            <h3>Description</h3>
+            <p>{{ad.description}}</p>
+        </div>
+        <div>
+            <h2>Details</h2>
+            <ul>
+                {% if ad.user == user %}
+                    <li>Listed by: <span style="color:dodgerblue; font-weight: bold;">you</span></li>
+                {% else %}
+                    <li>Listed by: <span style="color:dodgerblue; font-weight: bold;">{{ad.user}}</span></li>
+                {% endif %}
+                    <li>Auction started with: <strong>₹{{ad.price}}</strong></li>
+                {% if ad.category != "Nothing" %}
+                    <li>Category: {{ad.category}}</li>
+                {% endif %}
+                <li>AD Posted on <span style="color:gray;">{{ad.time}}</span></li>
+            </ul>
+        </div>
+    </div>
+    <div style="background-color: yellow; width:fit-content;">
+        <p>Bid on top <strong>₹{{max_bid}}</strong><span style="color:slategray; font-size:small;" >, Bidder 👉 <u>{{bidder}}</u>.</span></p>
+    </div>
+    {% if ad.user != user and ad.flag %}
+    <div>
+        {% if message_bid %}
+            <p  style="color: red;">{{message_bid}}</p>
+        {% endif %}
+        <form action="{% url 'listing' ad.id %}" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <input style="width: 600px; height:40px;" type="number" class="form-control" name="bid" placeholder="Place your bid here...">
+            </div>
+            <input class="btn btn-primary" type="submit" name="bid_submit" value="bid">
+        </form>
+    </div>
+    {% endif %}
+    {% if ad.user != user and not ad.flag %}
+    <div style="text-align: center;" class="alert alert-danger" role="alert">
+        This Listing is closed,,,
+    </div>
+    {% endif %}
+    <div>
+    {% if ad.user == user %}
+        <form action="{% url 'listing' ad.id %}" method="POST">
+            {% csrf_token %}
+            {% if ad.flag %}
+                <input style="margin-left: 1350px;" class="btn btn-danger" type="submit" name="ad_flag_submit" value="close listing">
+            {% else %}
+                <input style="margin-left: 1336px;" class="btn btn-success" type="submit" name="ad_flag_submit" value="reopen listing">
+            {% endif %}
+        </form>
+    {% endif %}
+    </div>
+    <div>
+        <div> <h3>Comments</h3> </div>
+        <div style="text-align: center;" class="alert alert-secondary" role="alert">
+           Scroll down to add a comment 🙂
+          </div>
+        {% for x in comments %}
+        <div class="alert alert-info" role="alert">
+            {{x.text | safe }}
+            <p style="text-align: right;">-{{x.user}}</p>
+            <p style="color:slategray; text-align: right; font-size:x-small;">{{x.time}}</p>
+        </div>
+        {% empty %}
+        <div class="alert alert-warning" role="alert">
+            No comments so far...
+        </div>
+        {% endfor %}
+    </div>
+    <div style="margin-left: 400px;">
+    <form action="{% url 'listing' ad.id %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3" >
+            <label for="TextareaLabel">Write your comment here 👇</label>
+            <textarea style="width: 600px; height:200px;"class="form-control" id="TextareaLabel" name="comment" ></textarea>
+          </div>
+        {% if message_comment %}
+            <P style="color:red">{{ message_comment }}</P>
+        {% endif %}
+        <input style="margin-left: 540px;" class="btn btn-primary" type="submit" name="comment_submit" value="post">
+    </form>
+    </div>
+{% endblock %}

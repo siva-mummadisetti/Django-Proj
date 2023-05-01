@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Image search !</title>
+        <style>
+            body{
+                font-family: arial,sans-serif;
+            }
+            #a{
+                margin-left:96%;
+                font-size: large;
+            }
+            #b{
+                margin-top:125px;
+            }
+            #c,#d,#e{
+                text-align: center;
+                padding-top: 25px;
+            }
+            a:hover{
+                color:red;
+            }
+            #tf{
+                border-radius: 20px;
+                border: 1px solid lightgray;
+                width: 575px;
+                height: 38px;
+            }
+            #tf:focus{
+                border:0px;
+            }
+            #f{
+                border-radius:4px;
+                background-color: whitesmoke;
+                border: 0px;
+                color:#222;
+            }
+            #f:hover{
+                border: 1px solid lightgray;
+            }
+        </style>
+    </head>
+    <body>
+        <div id=a > <a href="index.html"> &lt;&lt;Back</a></div>
+        <div id=b >
+            <div id=c > <img src="images/logo2.png" alt="google img logo" width="272" height="92"> </div>
+            <form action="https://www.google.com/search">
+                <div id=d style="height:44px;" >
+                    <input id="tf" type="text" name="q">
+                    <input type="hidden" name="tbm" value="isch">   
+                </div>
+                <div id=e > <input id =f style="width: 130px; height: 36px;" type="submit" value="Image Search" > </div>
+            </form>
+        </div>
+    </body>
+</html>

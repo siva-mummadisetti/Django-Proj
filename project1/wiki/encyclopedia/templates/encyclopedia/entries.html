@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+
+
+{% block title %}  {{title}} {% endblock %}
+
+{% block styling %}
+    <style>
+        #a{
+            margin-left: 1125px;
+            font-size: 17px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div id="a" >
+        <a href="{% url 'mod' title %}">to modify content</a>
+    </div>
+    {{inject | safe}}
+{% endblock %}

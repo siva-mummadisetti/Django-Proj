@@ -1,0 +1,59 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %} Categories {% endblock %}
+
+{% block styling %}
+    <style>
+        a:hover{
+            text-decoration: none;
+            color:gainsboro;
+        }
+        a:visited{
+            text-decoration: none;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<h2><u>Search by category</u></h2>
+    {% if message_category %}
+    <div class="alert alert-danger" role="alert">
+        {{message_category}}
+      </div>
+    {% endif %}
+    <div style="margin-left: 20px; font-size: 22px;">
+        <div>
+            <a href="{% url 'cat' 'Cars' %}">🚗 Cars</a>
+        </div>
+        <div>
+            <a href="{% url 'cat' 'Properties' %}">🏡 Properties</a>
+        </div>
+        <div>
+            <a href="{% url 'cat' 'Mobiles' %}">📱 Mobiles</a>
+        </div>
+        <div>
+            <a href="{% url 'cat' 'Bikes' %}">🛵 Bikes</a>
+        </div>
+        <div>
+            <a href="{% url 'cat' 'Electronics & Appliances' %}">📺 Electronics & Appliances</a>
+        </div>
+        <div>
+            <a href="{% url 'cat' 'Commercial Vehicles & Spares' %}">🚚 Commercial Vehicles & Spares</a>
+        </div>
+        <div>
+            <a href="{% url 'cat' 'Furniture' %}">🪑 Furniture</a>
+        </div>
+        <div>
+            <a href="{% url 'cat' 'Fashion' %}">👨‍👩‍👧‍👧 Fashion</a>
+        </div>
+        <div>
+            <a href="{% url 'cat' 'Books & Sports' %}">📚 Books & Sports</a>
+        </div>
+        <div>
+            <a href="{% url 'cat' 'Pets' %}">🐶 Pets</a>
+        </div>
+        <div>
+            <a href="{% url 'cat' 'Others' %}">🙃 Others</a>
+        </div>  
+    </div>
+{% endblock %}
